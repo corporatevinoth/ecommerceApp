@@ -1,0 +1,10 @@
+{
+	"paymentNo": 12345678,
+	"productName": "Dabur Red",
+	"description": "Tooth paste",
+	"unitPrice": 20.00,
+	"quantity": 20,
+	"batchNo": 2345678,
+	"paymentDate": "2023-12-31",
+	"totalPrice": 400.00
+}
