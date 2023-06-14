@@ -11,11 +11,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +31,7 @@ public class ProductCatalog {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productCatalogNo;
+	private Long productId;
 
 	@NotNull
 	@Size(min = 2, message = "Product Name should have atleast 2 characters")
@@ -40,7 +39,7 @@ public class ProductCatalog {
 
 	@NotNull
 	@Size(min = 2, message = "Product description should have atleast 5 characters")
-	private String description;
+	private String productCategory;
 
 	@DecimalMin(value = "0.5", inclusive = false, message = "Product unit price should be greater than 0.5 rs")
 	@Digits(integer = 3, fraction = 2)
@@ -50,11 +49,13 @@ public class ProductCatalog {
 	private Long quantity;
 
 	@Column(name = "batchNo", nullable = false)
-	private String batchNo;
+	private Long batchNo;
+	
+	@Future
+	private Date expDate;
+	
+	@Past
+	private Date mfgDate;
 
-	private Date productCatalogDate;
-
-	@DecimalMin(value = "0.5", inclusive = false, message = "Product total price should be greater than 0.5 rs")
-	@Digits(integer = 3, fraction = 2)
-	private BigDecimal totalPrice;
+	
 }

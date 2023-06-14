@@ -45,21 +45,6 @@ public class ProductCatalogService {
 	                bill.getProductName());
 	        }
 	 
-	        if (Objects.nonNull(
-	                bill.getDescription())
-	            && !"".equalsIgnoreCase(
-	                bill.getDescription())) {
-	            depDB.setDescription(
-	                bill.getDescription());
-	        }
-	 
-	        if (Objects.nonNull(bill.getBatchNo())
-	            && !"".equalsIgnoreCase(
-	                bill.getBatchNo())) {
-	            depDB.setBatchNo(
-	                bill.getBatchNo());
-	        }
-	 
 	        return productCatalogRepository.save(depDB);
 	    }
 	 
