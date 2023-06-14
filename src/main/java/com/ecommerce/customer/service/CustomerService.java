@@ -38,11 +38,11 @@ public class CustomerService {
 	            = customeringRepository.findById(customerId)
 	                  .get();
 	 
-	        if (Objects.nonNull(customer.getReceiverName())
+	        if (Objects.nonNull(customer.getCustomerName())
 	            && !"".equalsIgnoreCase(
-	                customer.getReceiverName())) {
-	            depDB.setReceiverName(
-	                customer.getReceiverName());
+	                customer.getCustomerName())) {
+	            depDB.setCustomerName(
+	                customer.getCustomerName());
 	        }
 	 
 	        if (Objects.nonNull(
@@ -53,10 +53,7 @@ public class CustomerService {
 	                customer.getCustomerAddress());
 	        }
 	 
-	        if (Objects.nonNull(customer.getDeliveryDate())) {
-	            depDB.setDeliveryDate(
-	                customer.getDeliveryDate());
-	        }
+	        
 	 
 	        return customeringRepository.save(depDB);
 	    }
