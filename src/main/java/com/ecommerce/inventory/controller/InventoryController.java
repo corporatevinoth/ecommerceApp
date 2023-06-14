@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.inventory.model.Product;
+import com.ecommerce.inventory.model.Inventory;
 import com.ecommerce.inventory.service.InventoryService;
 
 import jakarta.validation.Valid;
@@ -20,30 +20,30 @@ import jakarta.validation.Valid;
 public class InventoryController {
 
 	@Autowired
-	private InventoryService productService;
+	private InventoryService InventoryService;
 
 	// Save operation
-	@PostMapping("/products")
-	public Product saveProduct(@Valid @RequestBody Product product) {
-		return productService.saveProduct(product);
+	@PostMapping("/Inventorys")
+	public Inventory saveInventory(@Valid @RequestBody Inventory Inventory) {
+		return InventoryService.saveInventory(Inventory);
 	}
 
 	// Read operation
-	@GetMapping("/products")
-	public List<Product> fetchProductList() {
-		return productService.fetchProductList();
+	@GetMapping("/Inventorys")
+	public List<Inventory> fetchInventoryList() {
+		return InventoryService.fetchInventoryList();
 	}
 
 	// Update operation
-	@PutMapping("/products/{id}")
-	public Product updateProduct(@RequestBody Product product, @PathVariable("id") Long inventoryId) {
-		return productService.updateProduct(product, inventoryId);
+	@PutMapping("/Inventorys/{id}")
+	public Inventory updateInventory(@RequestBody Inventory Inventory, @PathVariable("id") Long inventoryId) {
+		return InventoryService.updateInventory(Inventory, inventoryId);
 	}
 
 	// Delete operation
-	@DeleteMapping("/products/{id}")
-	public String deleteProductById(@PathVariable("id") Long inventoryId) {
-		productService.deleteProductById(inventoryId);
+	@DeleteMapping("/Inventorys/{id}")
+	public String deleteInventoryById(@PathVariable("id") Long inventoryId) {
+		InventoryService.deleteInventoryById(inventoryId);
 		return "Deleted Successfully";
 	}
 }

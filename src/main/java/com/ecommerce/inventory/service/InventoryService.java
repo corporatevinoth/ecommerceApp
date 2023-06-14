@@ -6,7 +6,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.inventory.model.Product;
+import com.ecommerce.inventory.model.Inventory;
 import com.ecommerce.inventory.repository.InventoryRepository;
 
 @Service
@@ -16,55 +16,66 @@ public class InventoryService {
 	 
 	    // Save operation
 	    
-	    public Product saveProduct(Product product)
+	    public Inventory saveInventory(Inventory inventory)
 	    {
-	        return inventoryRepository.save(product);
+	        return inventoryRepository.save(inventory);
 	    }
 	 
 	    // Read operation
-	     public List<Product> fetchProductList()
+	     public List<Inventory> fetchInventoryList()
 	    {
-	        return (List<Product>)
+	        return (List<Inventory>)
 	            inventoryRepository.findAll();
 	    }
 	 
 	    // Update operation
-	    public Product
-	    updateProduct(Product product,
+	    public Inventory
+	    updateInventory(Inventory inventory,
 	                     Long inventoryID)
 	    {
 	 
-	        Product depDB
+	        Inventory depDB
 	            = inventoryRepository.findById(inventoryID)
 	                  .get();
 	 
-	        if (Objects.nonNull(product.getName())
+	        if (Objects.nonNull(inventory.getInventoryname())
 	            && !"".equalsIgnoreCase(
-	                product.getName())) {
-	            depDB.setName(
-	                product.getName());
+	                inventory.getInventoryname())) {
+	            depDB.setInventoryname(
+	                inventory.getInventoryname());
 	        }
 	 
 	        if (Objects.nonNull(
-	                product.getDescription())
+	                inventory.getInventoryDescription())
 	            && !"".equalsIgnoreCase(
-	                product.getDescription())) {
-	            depDB.setDescription(
-	                product.getDescription());
+	                inventory.getInventoryDescription())) {
+	            depDB.setInventoryDescription(
+	                inventory.getInventoryDescription());
 	        }
 	 
-	        if (Objects.nonNull(product.getBatchNo())
-	            && !"".equalsIgnoreCase(
-	                product.getBatchNo())) {
-	            depDB.setBatchNo(
-	                product.getBatchNo());
+	        if (Objects.nonNull(inventory.getTotalCapacity())
+	            && 
+	                inventory.getTotalCapacity()>10) {
+	            depDB.setTotalCapacity(
+	                inventory.getTotalCapacity());
 	        }
+	        if (Objects.nonNull(inventory.getAvailableCapacity())
+		            && 
+		                inventory.getAvailableCapacity()>10) {
+		            depDB.setAvailableCapacity(
+		                inventory.getAvailableCapacity());
+		    }
+	        if (Objects.nonNull(inventory.getStatus())
+		            ) {
+		            depDB.setStatus(
+		            		inventory.getStatus());
+		    }
 	 
 	        return inventoryRepository.save(depDB);
 	    }
 	 
 	    // Delete operation
-	    public void deleteProductById(Long inventoryID)
+	    public void deleteInventoryById(Long inventoryID)
 	    {
 	        inventoryRepository.deleteById(inventoryID);
 	    }
