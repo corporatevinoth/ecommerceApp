@@ -1,0 +1,31 @@
+{
+	"inventoryID": 10002,
+	"inventoryname": "SHAMPOOInventory",
+	"inventoryDescription": "Facility For store Shampoos",
+	"TotalCapacity": 100,
+	"AvailableCapacity": 50,
+	"status": "ACTIVE",
+	"products": [{
+			"productName": "Sunsilk",
+			"productId": "UDI283",
+			"productCategory": "SHAMPOO",
+			"unitPrice": "10.00",
+			"quantity": "10gm",
+			"batchNo": 903456789,
+			"expDate": "2022-12-31",
+			"mfgDate": "2024-12-31",
+			"noOfItems": 10
+		},
+		{
+			"productName": "DaburRed",
+			"productId": "UDI284",
+			"productCategory": "TOOTHPASTE",
+			"unitPrice": "20.00",
+			"quantity": "20gm",
+			"batchNo": 903456709,
+			"expDate": "2022-12-31",
+			"mfgDate": "2024-12-31",
+			"noOfItems": 10
+		}
+	]
+}

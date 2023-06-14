@@ -1,0 +1,32 @@
+{
+	"orderId": 123456789,
+	"orderShippingAddress": "ABC Streat, Test Nager, Test City. Mumbai",
+	"orderBillingAddress": "ABC Streat, Test Nager, Test City. Mumbai",
+	"orderContactNo": 9090808070,
+	"orderTotalPrice": 30.30,
+	"orderTax": 0.30,
+	"orderPrice ": 30.00,
+	"products": [{
+			"productName": "Sunsilk",
+			"productId": "UDI283",
+			"productCategory": "SHAMPOO",
+			"unitPrice": "10.00",
+			"quantity": "10gm",
+			"batchNo": 903456789,
+			"expDate": "2022-12-31",
+			"mfgDate": "2024-12-31",
+			"noOfItems": 1
+		},
+		{
+			"productName": "DaburRed",
+			"productId": "UDI284",
+			"productCategory": "TOOTHPASTE",
+			"unitPrice": "20.00",
+			"quantity": "20gm",
+			"batchNo": 903456709,
+			"expDate": "2022-12-31",
+			"mfgDate": "2024-12-31",
+			"noOfItems": 1
+		}
+	]
+}

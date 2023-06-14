@@ -1,0 +1,10 @@
+{
+"customerName" : "Winoth",
+"customerId" : "CUS10001",
+"cusotmerBillingAdress" : "ABC Streat, Test Nager, Test City. Mumbai",
+"cusotmerShippingAddress" : "ABC Streat, ship Nager, ship City. Mumbai",
+"customerContactNumber" : 898765433,
+"customerEmailId" : "winoth@gmail.com",
+"customerProofType" : "AADHAR",
+"customerProofId" : "909080807070"
+}
