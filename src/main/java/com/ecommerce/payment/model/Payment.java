@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,7 +33,7 @@ public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long paymentNo;
+	private Long paymentId;
 
 	@NotNull
 	@Size(min = 2, message = "Product Name should have atleast 2 characters")
@@ -51,7 +52,8 @@ public class Payment {
 
 	@Column(name = "batchNo", nullable = false)
 	private String batchNo;
-
+	
+	@Future
 	private Date paymentDate;
 
 	@DecimalMin(value = "0.5", inclusive = false, message = "Product total price should be greater than 0.5 rs")
