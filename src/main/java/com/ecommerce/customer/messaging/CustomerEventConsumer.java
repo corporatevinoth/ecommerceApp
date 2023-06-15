@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class CustomerEventConsumer {
 	private static Logger LOGGER = LoggerFactory.getLogger(CustomerEventConsumer.class);
 
-	@KafkaListener(topics = "orderTopic", 
-			groupId = "group-id")
+//	@KafkaListener(topics = "orderTopic", 
+//			groupId = "group-id")
 	public void consume(String product) 
 	{
 		LOGGER.info(String.format("Order created -> %s", product));

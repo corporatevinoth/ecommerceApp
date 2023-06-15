@@ -1,12 +1,13 @@
 package com.ecommerce.customer.model;
 
-import java.math.BigDecimal;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import com.ecommerce.customer.config.ValidPhoneNumber;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +27,16 @@ import lombok.ToString;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "sequence-generator")
+    @GenericGenerator(
+      name = "sequence-generator",
+      strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+      parameters = {
+        @Parameter(name = "sequence_name", value = "user_sequence"),
+        @Parameter(name = "initial_value", value = "100001"),
+        @Parameter(name = "increment_size", value = "1")
+        }
+    )
 	private Long customerId;
 
 	@NotNull
@@ -34,22 +44,23 @@ public class Customer {
 	private String customerName;
 
 	@NotNull
-	@Size(min = 20, message = "orderShippingAddress should have atleast 20 characters")
-	private String customerAddress;
+	@Size(min = 20, message = "cusotmerShippingAddress should have atleast 20 characters")
+	private String cusotmerShippingAddress;
 	
 
 	@NotNull
-	@Size(min = 20, message = "orderBillingAddress should have atleast 20 characters")
+	@Size(min = 20, message = "customerBillingAddress should have atleast 20 characters")
 	private String customerBillingAddress;
 
 	
 	@ValidPhoneNumber
-	private BigDecimal orderContactNo;
+	@Column(unique = true)
+	private Long customerContactNumber;
 	
 	@NotNull
 	private String customerEmailId;
 	
-	@Pattern(regexp = "^(AADHAR|PANCARD|DRIVERLICENCE)$", message = "invalid customer Proof Type")
+	@Pattern(regexp = "^(AADHAR|PANCARD|DRIVERLICENCE)$", message = "invalid customer Proof Type valid types are AADHAR|PANCARD|DRIVERLICENCE")
 	private String customerProofType;
 	
 	@NotNull

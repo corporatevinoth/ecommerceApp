@@ -2,6 +2,7 @@ package com.ecommerce.customer.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,20 +13,20 @@ import com.ecommerce.customer.repository.CustomerRepository;
 @Service
 public class CustomerService {
 	 @Autowired
-	    private CustomerRepository customeringRepository;
+	    private CustomerRepository customerRepository;
 	 
 	    // Save operation
 	    
 	    public Customer saveCustomer(Customer customer)
 	    {
-	        return customeringRepository.save(customer);
+	        return customerRepository.save(customer);
 	    }
 	 
 	    // Read operation
 	     public List<Customer> fetchCustomerList()
 	    {
 	        return (List<Customer>)
-	            customeringRepository.findAll();
+	            customerRepository.findAll();
 	    }
 	 
 	    // Update operation
@@ -35,7 +36,7 @@ public class CustomerService {
 	    {
 	 
 	        Customer depDB
-	            = customeringRepository.findById(customerId)
+	            = customerRepository.findById(customerId)
 	                  .get();
 	 
 	        if (Objects.nonNull(customer.getCustomerName())
@@ -46,21 +47,27 @@ public class CustomerService {
 	        }
 	 
 	        if (Objects.nonNull(
-	                customer.getCustomerAddress())
+	                customer.getCusotmerShippingAddress())
 	            && !"".equalsIgnoreCase(
-	                customer.getCustomerAddress())) {
-	            depDB.setCustomerAddress(
-	                customer.getCustomerAddress());
+	                customer.getCusotmerShippingAddress())) {
+	            depDB.setCusotmerShippingAddress(
+	                customer.getCusotmerShippingAddress());
 	        }
 	 
 	        
 	 
-	        return customeringRepository.save(depDB);
+	        return customerRepository.save(depDB);
 	    }
 	 
 	    // Delete operation
 	    public void deleteCustomerById(Long customerId)
 	    {
-	        customeringRepository.deleteById(customerId);
+	        customerRepository.deleteById(customerId);
 	    }
+
+		public Optional<Customer> fetchCustomer(Long id) {
+			
+		        return customerRepository.findById(id);
+		    
+		}
 }
