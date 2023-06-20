@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "8b5d1486-334e-4a92-bb71-8f208b0cce7a",
+		"name": "ecomAppFinalProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21749455"
+	},
+	"item": [
+		{
+			"name": "customer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "inventory",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "prodctCatalog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"productName\" : \"Sunsilk\",\r\n\"productCode\" : \"UDI283\",\r\n\"productCategory\" : \"SHAMPOO\",\r\n\"unitPrice\" : \"10.00\",\r\n\"quantity\" : \"10gm\",\r\n\"batchNo\" : 903456789,\r\n\"expDate\" : \"2025-12-31\",\r\n\"mfgDate\" : \"2022-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8093/productCatalog",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"productCatalog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n\t\t\"paymentCode\": 12345678,\r\n\t\t\"orderId\": \"OD123456789\",\r\n\t\t\"paymentType\": \"CARD\",\r\n\t\t\"totalPrice\": 20.00,\r\n\t\t\"gst\": 2.00,\r\n\t\t\"mrp\": 28.00,\r\n\t\t\"discount\": 8.00,\r\n\t\t\"rrn\":2231312,\r\n\t\t\"status\":\"INITIATED\",\r\n\t\t\"paymentDate\":\"2023-12-31\"\t\t\r\n\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8092/payment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8092",
+					"path": [
+						"payment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "paymentOrder",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

@@ -1,8 +1,8 @@
 {
-	"orderId": 123456789,
-	"orderShippingAddress": "ABC Streat, Test Nager, Test City. Mumbai",
-	"orderBillingAddress": "ABC Streat, Test Nager, Test City. Mumbai",
-	"orderContactNo": 9090808070,
+	"orderId": "OD123456789",
+	"orderDate": "2023-12-31",
+	"orderType": "DELIVERY",
+	"orderStatus": "INCART",
 	"orderTotalPrice": 30.30,
 	"orderTax": 0.30,
 	"orderPrice ": 30.00,
