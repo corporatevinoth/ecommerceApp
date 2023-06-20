@@ -32,6 +32,11 @@ public class ProductCatalog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productId;
+	
+
+	@Column(unique = true)
+	@NotNull
+	private String productCode;
 
 	@NotNull
 	@Size(min = 2, message = "Product Name should have atleast 2 characters")
@@ -45,16 +50,16 @@ public class ProductCatalog {
 	@Digits(integer = 3, fraction = 2)
 	private BigDecimal unitPrice;
 
-	@Min(value = 1, message = "Product quantity should have atleast 2 characters")
-	private Long quantity;
+	@NotNull
+	private String quantity;
 
 	@Column(name = "batchNo", nullable = false)
 	private Long batchNo;
 	
-	@Future
+	@Future(message = "Expiry Date should be Future Date")
 	private Date expDate;
 	
-	@Past
+	@Past(message = "Manufactured Date should be Past Date")
 	private Date mfgDate;
 
 	

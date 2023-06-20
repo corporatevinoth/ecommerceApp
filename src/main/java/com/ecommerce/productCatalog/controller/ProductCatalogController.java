@@ -23,27 +23,32 @@ public class ProductCatalogController {
 	private ProductCatalogService productCatalogService;
 
 	// Save operation
-	@PostMapping("/productCatalogs")
+	@PostMapping("/productCatalog")
 	public ProductCatalog saveProductCatalog(@Valid @RequestBody ProductCatalog productCatalog) {
 		return productCatalogService.saveProductCatalog(productCatalog);
 	}
 
 	// Read operation
-	@GetMapping("/productCatalogs")
+	@GetMapping("/productCatalog")
 	public List<ProductCatalog> fetchProductCatalogList() {
 		return productCatalogService.fetchProductCatalogList();
 	}
 
 	// Update operation
-	@PutMapping("/productCatalogs/{id}")
-	public ProductCatalog updateProductCatalog(@RequestBody ProductCatalog productCatalog, @PathVariable("id") Long inventoryId) {
-		return productCatalogService.updateProductCatalog(productCatalog, inventoryId);
+	@PutMapping("/productCatalog/{id}")
+	public ProductCatalog updateProductCatalog(@RequestBody ProductCatalog productCatalog, @PathVariable("id") Long productCatalogId) {
+		return productCatalogService.updateProductCatalog(productCatalog, productCatalogId);
 	}
 
 	// Delete operation
-	@DeleteMapping("/productCatalogs/{id}")
-	public String deleteProductCatalogById(@PathVariable("id") Long inventoryId) {
-		productCatalogService.deleteProductCatalogById(inventoryId);
+	@DeleteMapping("/productCatalog/{id}")
+	public String deleteProductCatalogById(@PathVariable("id") Long productCatalogId) {
+		productCatalogService.deleteProductCatalogById(productCatalogId);
 		return "Deleted Successfully";
+	}
+	
+	@GetMapping("/productCatalog/{id}")
+	public ProductCatalog getproductCatalog(@PathVariable("id") Long productCatalogId) {
+		return productCatalogService.findByproductCatalogId(productCatalogId).get();
 	}
 }
