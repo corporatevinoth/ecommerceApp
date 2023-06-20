@@ -55,6 +55,7 @@ public class Customer {
 	
 	@ValidPhoneNumber
 	@Column(unique = true)
+	@NotNull
 	private Long customerContactNumber;
 	
 	@NotNull
