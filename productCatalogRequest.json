@@ -1,10 +1,9 @@
 {
-	"productName": "Sunsilk",
-	"productId": "UDI283",
-	"productCategory": "SHAMPOO",
-	"unitPrice": "10.00",
-	"quantity": "10gm",
-	"batchNo": 903456789,
-	"expDate": "2022-12-31",
-	"mfgDate": "2024-12-31"
+	"productName": "Dabur Red",
+	"description": "Tooth paste",
+	"unitPrice": 20.00,
+	"quantity": 20,
+	"batchNo": 2345678,
+	"paymentDate": "2023-12-31",
+	"totalPrice": 400.00
 }

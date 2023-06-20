@@ -1,10 +1,12 @@
-{
-	"paymentNo": 12345678,
-	"productName": "Dabur Red",
-	"description": "Tooth paste",
-	"unitPrice": 20.00,
-	"quantity": 20,
-	"batchNo": 2345678,
-	"paymentDate": "2023-12-31",
-	"totalPrice": 400.00
-}
+	{
+		"paymentCode": 12345678,
+		"orderId": "aaa",
+		"paymentType": "NETBANKING",
+		"totalPrice": 20.00,
+		"gst": 2.00,
+		"mrp": 28.00,
+		"discount": 8.00,
+		"rrn":2231312,
+		"status":"INITIATED",
+		"paymentDate":"2023-12-31"		
+	}
