@@ -1,7 +1,6 @@
 package com.ecommerce.order.messaging;
 
 
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ecommerce.order.model.Order;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.ser.std.NumberSerializers.IntegerSerializer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,7 +37,7 @@ public class OrderEventProducer {
 	public String publishMessage(Order order) {
 
 		// Sending the message
-		order.getProducts().forEach(product->kafkaTemplate.send(TOPIC, product.toString()));
+	//	order.getProducts().forEach(product->kafkaTemplate.send(TOPIC, product.toString()));
 		LOGGER.info("order id : {} published successfully",order.getOrderId());
 		return "Published Successfully";
 	}

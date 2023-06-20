@@ -23,25 +23,31 @@ public class OrderController {
 	private OrderService orderService;
 
 	// Save operation
-	@PostMapping("/orders")
+	@PostMapping("/order")
 	public Order saveOrder(@Valid @RequestBody Order order) {
 		return orderService.saveOrder(order);
 	}
 
 	// Read operation
-	@GetMapping("/orders")
+	@GetMapping("/order")
 	public List<Order> fetchOrderList() {
 		return orderService.fetchOrderList();
 	}
+	
+	// read operation
+	@GetMapping("/order/{id}")
+		public Order updateOrder(@PathVariable("id") Long orderId) {
+			return orderService.getOrder(orderId).get();
+		}
 
 	// Update operation
-	@PutMapping("/orders/{id}")
+	@PutMapping("/order/{id}")
 	public Order updateOrder(@RequestBody Order order, @PathVariable("id") Long inventoryId) {
 		return orderService.updateOrder(order, inventoryId);
 	}
 
 	// Delete operation
-	@DeleteMapping("/orders/{id}")
+	@DeleteMapping("/order/{id}")
 	public String deleteOrderById(@PathVariable("id") Long inventoryId) {
 		orderService.deleteOrderById(inventoryId);
 		return "Deleted Successfully";
