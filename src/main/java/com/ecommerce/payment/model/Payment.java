@@ -2,6 +2,7 @@ package com.ecommerce.payment.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,15 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,27 +34,39 @@ public class Payment {
 	private Long paymentId;
 
 	@NotNull
-	@Size(min = 2, message = "Product Name should have atleast 2 characters")
-	private String productName;
+	@Column(unique = true)
+	private String paymentCode;
 
 	@NotNull
-	@Size(min = 2, message = "Product description should have atleast 5 characters")
-	private String description;
+	private String orderId;
 
-	@DecimalMin(value = "0.5", inclusive = false, message = "Product unit price should be greater than 0.5 rs")
-	@Digits(integer = 3, fraction = 2)
-	private BigDecimal unitPrice;
+	@DecimalMin(value = "0.5", inclusive = false, message = "totalPrice price should be greater than 0.5 rs")
+	@Digits(integer = 5, fraction = 2)
+	private BigDecimal totalPrice;
 
-	@Min(value = 1, message = "Product quantity should have atleast 2 characters")
-	private Long quantity;
+	@DecimalMin(value = "0.5", inclusive = false, message = "gst price should be greater than 0.5 rs")
+	@Digits(integer = 5, fraction = 2)
+	private BigDecimal gst;
 
-	@Column(name = "batchNo", nullable = false)
-	private String batchNo;
-	
-	@Future
+	@DecimalMin(value = "0.5", inclusive = false, message = "mrp price should be greater than 0.5 rs")
+	@Digits(integer = 5, fraction = 2)
+	private BigDecimal mrp;
+
+	@Digits(integer = 5, fraction = 2)
+	private BigDecimal discount;
+
+	private Long rrn;
+
+	@FutureOrPresent(message = "payment date should be present or future")
 	private Date paymentDate;
 
-	@DecimalMin(value = "0.5", inclusive = false, message = "Product total price should be greater than 0.5 rs")
-	@Digits(integer = 3, fraction = 2)
-	private BigDecimal totalPrice;
+	@Pattern(regexp = "^(INITIATED|INPROGRESS|PAID|RECONCILED|COMPLETED)$", message = "payment status valid types are INITIATED|INPROGRESS|PAID|RECONCILED|COMPLETED")
+	private String status;
+
+	@Pattern(regexp = "^(CARD|NETBANKING|WALLET|UPI|COD)$", message = "payment status valid types are CARD|NETBANKING|WALLET|UPI|COD")
+	private String paymentType;
+	
+	@Transient
+	private List<Order> orders;
+
 }

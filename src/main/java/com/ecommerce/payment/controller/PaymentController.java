@@ -23,25 +23,31 @@ public class PaymentController {
 	private PaymentService paymentService;
 
 	// Save operation
-	@PostMapping("/payments")
+	@PostMapping("/payment")
 	public Payment savePayment(@Valid @RequestBody Payment payment) {
 		return paymentService.savePayment(payment);
 	}
 
 	// Read operation
-	@GetMapping("/payments")
+	@GetMapping("/payment")
 	public List<Payment> fetchPaymentList() {
 		return paymentService.fetchPaymentList();
 	}
+	
+
+	@GetMapping("/payment/{id}")
+	public Payment getPayment(@PathVariable("id") Long paymentId) {
+		return paymentService.findByInventoryId(paymentId).get();
+	}
 
 	// Update operation
-	@PutMapping("/payments/{id}")
+	@PutMapping("/payment/{id}")
 	public Payment updatePayment(@RequestBody Payment payment, @PathVariable("id") Long inventoryId) {
 		return paymentService.updatePayment(payment, inventoryId);
 	}
 
 	// Delete operation
-	@DeleteMapping("/payments/{id}")
+	@DeleteMapping("/payment/{id}")
 	public String deletePaymentById(@PathVariable("id") Long inventoryId) {
 		paymentService.deletePaymentById(inventoryId);
 		return "Deleted Successfully";
