@@ -1,5 +1,6 @@
 package com.ecommerce.inventory.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,16 +33,19 @@ public class Inventory {
 
 	@NotNull
 	@Size(min = 2, message = "Inventory description should have atleast 5 characters")
-	private String inventoryDescription;
+	private String inventoryAddress;
 
 	@Min(value = 10, message = "Inventory totalCapacity greater than 10")
 	private Long totalCapacity;
 
 	@Min(value = 1, message = "Inventory availableCapacity greater than 1")
-	@Max(value = 9, message = "Inventory availableCapacity lessthan than 10")
 	private Long availableCapacity;
 
-	@Pattern(regexp = "^(ACTIVE|DISCONTINUTED)$", message = "invalid code")
+	@Pattern(regexp = "^(ACTIVE|DISCONTINUTED)$", message = "Invalid code")
 	private String status;
+	
+	@Column(unique = true)
+	@NotNull
+	private Long inventoryCode;
 
 }

@@ -20,30 +20,35 @@ import jakarta.validation.Valid;
 public class InventoryController {
 
 	@Autowired
-	private InventoryService InventoryService;
+	private InventoryService inventoryService;
 
 	// Save operation
-	@PostMapping("/Inventorys")
+	@PostMapping("/inventory")
 	public Inventory saveInventory(@Valid @RequestBody Inventory Inventory) {
-		return InventoryService.saveInventory(Inventory);
+		return inventoryService.saveInventory(Inventory);
 	}
 
 	// Read operation
-	@GetMapping("/Inventorys")
+	@GetMapping("/inventory")
 	public List<Inventory> fetchInventoryList() {
-		return InventoryService.fetchInventoryList();
+		return inventoryService.fetchInventoryList();
+	}
+	
+	@GetMapping("/inventory/{id}")
+	public Inventory getInventory(@PathVariable("id") Long inventoryId) {
+		return inventoryService.findByInventoryId(inventoryId).get();
 	}
 
 	// Update operation
-	@PutMapping("/Inventorys/{id}")
+	@PutMapping("/inventory/{id}")
 	public Inventory updateInventory(@RequestBody Inventory Inventory, @PathVariable("id") Long inventoryId) {
-		return InventoryService.updateInventory(Inventory, inventoryId);
+		return inventoryService.updateInventory(Inventory, inventoryId);
 	}
 
 	// Delete operation
-	@DeleteMapping("/Inventorys/{id}")
+	@DeleteMapping("/inventory/{id}")
 	public String deleteInventoryById(@PathVariable("id") Long inventoryId) {
-		InventoryService.deleteInventoryById(inventoryId);
+		inventoryService.deleteInventoryById(inventoryId);
 		return "Deleted Successfully";
 	}
 }
