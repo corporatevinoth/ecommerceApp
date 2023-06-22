@@ -1,7 +1,6 @@
-**Each branch is separate microservice. 
+Each branch is separate microservice. 
 In the doc branch, the postman collection for each project is there.
-The request payload for each project is also there in the docs branch. **
-
+The request payload for each project is also there in the docs branch. 
 Features Used:
 ==================
 Spring Boot Validation
