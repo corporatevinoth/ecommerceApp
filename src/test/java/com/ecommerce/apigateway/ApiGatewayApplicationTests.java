@@ -1,10 +1,10 @@
-package com.ecommerce.shipping;
+package com.ecommerce.apigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ShippingApplicationTests {
+class ApiGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {
