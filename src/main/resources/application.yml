@@ -1,0 +1,33 @@
+server:
+  port: 8091
+  
+spring:
+  application:
+    name: ORDER_SERVICE
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  datasource:
+        driverClassName: org.h2.Driver
+        password: password
+        url: jdbc:h2:file:/data/ecommerce;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+        username: sa
+  h2:
+    console:
+        enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+        ddl-auto: create-drop
+        
+resilience4j.circuitbreaker:
+  instances:
+    processService:
+      slidingWindowSize: 50
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
