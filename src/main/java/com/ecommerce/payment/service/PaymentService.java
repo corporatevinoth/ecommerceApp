@@ -51,7 +51,7 @@ public class PaymentService {
 
 			List<Order> orderList = restTemplate.getForObject(url, List.class, map);
 			LOGGER.info("order details collected" + orderList);
-
+			payment.setOrders(orderList);
 			if (orderList != null && (orderList).size() > 0) {
 				return paymentRepository.save(payment);
 			} else {
@@ -121,8 +121,28 @@ public class PaymentService {
 		paymentRepository.deleteById(paymentNo);
 	}
 
-	public Optional<Payment> findByInventoryId(Long paymentId) {
-		return paymentRepository.findById(paymentId);
+	public Payment findByInventoryId(Long paymentId) {
+		Payment resultPayment =  paymentRepository.findById(paymentId).get();
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		String url = "http://localhost:8091/payment/order/{orderId}/{frompayment}";
+		Map<String, String> map = new HashMap<>();
+		map.put("frompayment", "true");
+
+		
+		map.put("orderId", resultPayment.getOrderId());
+		List<Order> orderList = new ArrayList<Order>();
+		try {
+			orderList = restTemplate.getForObject(url, List.class, map);
+			LOGGER.info("order details collected for orderId" + resultPayment.getOrderId());
+
+		} catch (Exception e) {
+			LOGGER.error("error while fetching order details collected for orderId" + resultPayment.getOrderId());
+		}
+		resultPayment.setOrders(orderList);
+		
+		return resultPayment;
 
 	}
 }

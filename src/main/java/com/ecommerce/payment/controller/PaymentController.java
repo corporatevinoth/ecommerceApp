@@ -37,7 +37,7 @@ public class PaymentController {
 
 	@GetMapping("/payment/{id}")
 	public Payment getPayment(@PathVariable("id") Long paymentId) {
-		return paymentService.findByInventoryId(paymentId).get();
+		return paymentService.findByInventoryId(paymentId);
 	}
 
 	// Update operation
