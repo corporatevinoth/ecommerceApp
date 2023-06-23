@@ -33,37 +33,48 @@ public class PaymentController {
 	// Save operation
 	@PostMapping("/payment")
 	public Payment savePayment(@Valid @RequestBody Payment payment) {
+		LOGGER.info("savePayment of PaymentController");
+
 		return paymentService.savePayment(payment);
 	}
 
 	// Read operation
 	@GetMapping("/payment")
 	public List<Payment> fetchPaymentList() {
+		LOGGER.info("fetchPaymentList of PaymentController");
+
 		return paymentService.fetchPaymentList();
 	}
 	
 
 	@GetMapping("/payment/{id}")
 	public Payment getPayment(@PathVariable("id") Long paymentId) {
+		LOGGER.info("getPayment of PaymentController");
+
 		return paymentService.findByInventoryId(paymentId);
 	}
 
 	// Update operation
 	@PutMapping("/payment/{id}")
 	public Payment updatePayment(@RequestBody Payment payment, @PathVariable("id") Long inventoryId) {
+		LOGGER.info("updatePayment of PaymentController");
+
 		return paymentService.updatePayment(payment, inventoryId);
 	}
 
 	// Delete operation
 	@DeleteMapping("/payment/{id}")
 	public String deletePaymentById(@PathVariable("id") Long inventoryId) {
+		LOGGER.info("deletePaymentById of PaymentController");
+
 		paymentService.deletePaymentById(inventoryId);
 		return "Deleted Successfully";
 	}
 
 	@GetMapping("/payment/with-order")
 	public List<Payment> findAllWithOrders() {
-		LOGGER.info("Orders find");
+		LOGGER.info("savePayment of PaymentController");
+
 		List<Payment> payments = paymentService.findAll();
 		payments.forEach(payment -> payment.setOrders(orderclient.getOrderByOrderId(payment.getOrderId())));
 		return payments;

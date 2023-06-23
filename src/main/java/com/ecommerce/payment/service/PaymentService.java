@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,6 @@ import com.ecommerce.payment.repository.PaymentRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class PaymentService {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(PaymentService.class);
@@ -37,6 +35,8 @@ public class PaymentService {
 	// Save operation
 
 	public Payment savePayment(Payment payment) {
+		LOGGER.info("savePayment of PaymentService");
+
 
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -63,6 +63,8 @@ public class PaymentService {
 
 	// Read operation
 	public List<Payment> fetchPaymentList() {
+		LOGGER.info("fetchPaymentList of PaymentService");
+
 		RestTemplate restTemplate = new RestTemplate();
 
 		String url = "http://localhost:8091/payment/order/{orderId}/{frompayment}";
@@ -87,6 +89,8 @@ public class PaymentService {
 
 	// Update operation
 	public Payment updatePayment(Payment payment, Long paymentNo) {
+		LOGGER.info("updatePayment of PaymentService");
+
 
 		Payment dbDataObj = paymentRepository.findById(paymentNo).get();
 
@@ -114,10 +118,14 @@ public class PaymentService {
 
 	// Delete operation
 	public void deletePaymentById(Long paymentNo) {
+		LOGGER.info("deletePaymentById of PaymentService");
+
 		paymentRepository.deleteById(paymentNo);
 	}
 
 	public Payment findByInventoryId(Long paymentId) {
+		LOGGER.info("findByInventoryId of PaymentService");
+
 		Payment resultPayment = paymentRepository.findById(paymentId).get();
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -142,6 +150,8 @@ public class PaymentService {
 	}
 
 	public List<Payment> findAll() {
+		LOGGER.info("findAll of PaymentService");
+
 		return paymentRepository.findAll();
 	}
 }
