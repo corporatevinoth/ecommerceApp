@@ -36,9 +36,17 @@ public class OrderController {
 	
 	// read operation
 	@GetMapping("/order/{id}")
-		public Order updateOrder(@PathVariable("id") Long orderId) {
-			return orderService.getOrder(orderId).get();
-		}
+	public Order getOrder(@PathVariable("id") Long orderId) {
+		return orderService.getOrder(orderId).get();
+	}
+	
+	// read operation
+	@GetMapping("/orderList/{id}")
+	public List<Order> getOrderByOrderId(@PathVariable("id") String orderId) {
+		return orderService.getOrderByOrderId(orderId);
+	}
+	
+	
 
 	// Update operation
 	@PutMapping("/order/{id}")

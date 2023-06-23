@@ -40,7 +40,7 @@ public class OrderProxyController {
 				: new ArrayList<Order>();
 	}
 
-	public String getOrderFallback(Exception e) {
+	public String getOrderFallback(String orderId, String fromPayment, Throwable e) {
 		LOGGER.info("order service is not reachable. fall back method called. Please try again");
 		return "This is a fallback method for getOrder";
 	}
