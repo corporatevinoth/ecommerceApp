@@ -44,6 +44,15 @@ https://hub.docker.com/repository/docker/doc01062021/customer/general
 
 Webclient is used to communicate payment service to order service.
 
+Zipkin integration for distributed log tracing thilable ate logs available after instal the zipkin clint in local machine in the url 
+http://127.0.0.1:9411/zipkin
+the zipkin client installation refer this documentation
+https://zipkin.io/pages/tracers_instrumentation.html
+
+
+
+
+
 
 
 
