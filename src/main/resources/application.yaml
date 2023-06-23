@@ -1,0 +1,29 @@
+server:
+    port: 8090
+    
+spring:
+  application:
+    name: INVENTORY_SERVICE
+    datasource:
+        driverClassName: org.h2.Driver
+        password: password
+        url: jdbc:h2:file:/data/inventory;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+        username: sa
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: true
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create
+            
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: '*'
