@@ -37,30 +37,26 @@ public class PaymentService {
 	// Save operation
 
 	public Payment savePayment(Payment payment) {
-		try {
 
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-			headers.add("fromPayment", "true");
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		headers.add("fromPayment", "true");
 
-			String url = "http://localhost:8091/payment/order/{orderId}/{frompayment}";
-			Map<String, String> map = new HashMap<>();
-			map.put("orderId", payment.getOrderId());
-			map.put("frompayment", "true");
+		String url = "http://localhost:8091/payment/order/{orderId}/{frompayment}";
+		Map<String, String> map = new HashMap<>();
+		map.put("orderId", payment.getOrderId());
+		map.put("frompayment", "true");
 
-			List<Order> orderList = restTemplate.getForObject(url, List.class, map);
-			LOGGER.info("order details collected" + orderList);
-			payment.setOrders(orderList);
-			if (orderList != null && (orderList).size() > 0) {
-				return paymentRepository.save(payment);
-			} else {
-				LOGGER.error("error while fetching order details collected for orderId" + payment.getOrderId());
-				throw new OrderNotFoundException("Order Not Found for " + payment.getOrderId());
-
-			}
-		} catch (Exception e) {
+		List<Order> orderList = restTemplate.getForObject(url, List.class, map);
+		LOGGER.info("order details collected" + orderList);
+		payment.setOrders(orderList);
+		if (orderList != null && (orderList).size() > 0) {
+			return paymentRepository.save(payment);
+		} else {
+			LOGGER.error("error while fetching order details collected for orderId" + payment.getOrderId());
 			throw new OrderNotFoundException("Order Not Found for " + payment.getOrderId());
+
 		}
 
 	}
@@ -122,15 +118,14 @@ public class PaymentService {
 	}
 
 	public Payment findByInventoryId(Long paymentId) {
-		Payment resultPayment =  paymentRepository.findById(paymentId).get();
-		
+		Payment resultPayment = paymentRepository.findById(paymentId).get();
+
 		RestTemplate restTemplate = new RestTemplate();
 
 		String url = "http://localhost:8091/payment/order/{orderId}/{frompayment}";
 		Map<String, String> map = new HashMap<>();
 		map.put("frompayment", "true");
 
-		
 		map.put("orderId", resultPayment.getOrderId());
 		List<Order> orderList = new ArrayList<Order>();
 		try {
@@ -141,8 +136,12 @@ public class PaymentService {
 			LOGGER.error("error while fetching order details collected for orderId" + resultPayment.getOrderId());
 		}
 		resultPayment.setOrders(orderList);
-		
+
 		return resultPayment;
 
+	}
+
+	public List<Payment> findAll() {
+		return paymentRepository.findAll();
 	}
 }

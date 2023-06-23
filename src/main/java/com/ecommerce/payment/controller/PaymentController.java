@@ -2,6 +2,8 @@ package com.ecommerce.payment.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.payment.client.OrderClient;
 import com.ecommerce.payment.model.Payment;
 import com.ecommerce.payment.service.PaymentService;
 
@@ -19,8 +22,13 @@ import jakarta.validation.Valid;
 @RestController
 public class PaymentController {
 
+	private static Logger LOGGER = LoggerFactory.getLogger(PaymentController.class);
+
 	@Autowired
 	private PaymentService paymentService;
+
+	@Autowired
+	OrderClient orderclient;
 
 	// Save operation
 	@PostMapping("/payment")
@@ -51,5 +59,13 @@ public class PaymentController {
 	public String deletePaymentById(@PathVariable("id") Long inventoryId) {
 		paymentService.deletePaymentById(inventoryId);
 		return "Deleted Successfully";
+	}
+
+	@GetMapping("/payment/with-order")
+	public List<Payment> findAllWithOrders() {
+		LOGGER.info("Orders find");
+		List<Payment> payments = paymentService.findAll();
+		payments.forEach(payment -> payment.setOrders(orderclient.getOrderByOrderId(payment.getOrderId())));
+		return payments;
 	}
 }
