@@ -19,8 +19,7 @@ public class WebClientConfig {
 	@Bean
 	public WebClient orderWebClient() {
 		return WebClient.builder()
-				.baseUrl("http://ORDER_SERVICE")
-				.filter(filterFunction)
+				.baseUrl("http://localhost:8091")
 				.build();
 	}
 	
