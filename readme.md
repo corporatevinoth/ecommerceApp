@@ -28,7 +28,7 @@ Open Api 2.0 documentation added for spingBoot 3.x
 Example: http://localhost:8091/swagger-ui/index.html
 http://localhost:8091/v3/api-docs
 
-Spring Cloud Eureka server added for service registry
+Spring Cloud Eureka server added for service registry.
 
 Spring Cloud API gateway used for Gateway service pattern and load balancing.
 
